@@ -243,3 +243,7 @@ func jsonDump(v interface{}) string {
 func (s *Server) ListenAndServe(addr string) error {
 	return http.ListenAndServe(addr, s)
 }
+
+func (s *Server) HandleOperation(SOAPAction string, Soap_Body_Content string, requestFactory RequestFactoryFunc, operationHandlerFunc OperationHandlerFunc) {
+	s.RegisterHandler("/", SOAPAction, Soap_Body_Content, requestFactory, operationHandlerFunc)
+}
